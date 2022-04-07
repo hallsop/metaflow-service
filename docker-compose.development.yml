@@ -70,11 +70,10 @@ services:
     depends_on:
       - migration
   migration:
+    command: ["/opt/latest/bin/python3", "/root/run_goose.py"]
     build:
       context: .
-      dockerfile: Dockerfile.migration_service
-    ports:
-      - "${MF_MIGRATION_PORT:-8082}:${MF_MIGRATION_PORT:-8082}"
+      dockerfile: Dockerfile
     volumes:
       - ./services:/root/services
     environment:
